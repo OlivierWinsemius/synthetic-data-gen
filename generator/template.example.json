@@ -1,0 +1,74 @@
+{
+  "size": 50,
+  "type": "csv",
+  "schema": {
+    "id": {
+      "type": "id"
+    },
+    "age": {
+      "type": "number",
+      "options": {
+        "step": 1,
+        "min": 14,
+        "max": 90
+      }
+    },
+    "gender": {
+      "type": "choice",
+      "options": {
+        "choices": ["Male", "Female"]
+      }
+    },
+    "eyeColor": {
+      "type": "choice",
+      "options": {
+        "choices": [
+          ["brown", 0.45],
+          ["blue", 0.27],
+          ["hazel", 0.18],
+          ["green", 0.1]
+        ]
+      }
+    },
+    "isPregnant": {
+      "type": "boolean",
+      "options": {
+        "ratio": 0.2
+      },
+      "rules": [
+        {
+          "field": "gender",
+          "value": "Male",
+          "result": false
+        },
+        {
+          "field": "age",
+          "operator": "lt",
+          "value": 21,
+          "result": false
+        },
+        {
+          "field": "age",
+          "operator": "gt",
+          "value": 50,
+          "result": false
+        }
+      ]
+    },
+    "monthsPregnant": {
+      "type": "number",
+      "options": {
+        "step": 0.1,
+        "min": 0,
+        "max": 9
+      },
+      "rules": [
+        {
+          "field": "isPregnant",
+          "value": false,
+          "result": null
+        }
+      ]
+    }
+  }
+}
